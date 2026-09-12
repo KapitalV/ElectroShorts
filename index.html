@@ -1,0 +1,819 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description"
+    content="ElectroShorts transforms long videos into ready-to-post vertical shorts on Windows x64 with AI speaker tracking and kinetic captions.">
+  <title>ElectroShorts — Long videos. Shorts that hit.</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+
+  <!-- Hidden SVG Sprite Library -->
+  <svg width="0" height="0" aria-hidden="true" style="position:absolute;overflow:hidden">
+    <defs>
+      <symbol id="icon-bolt" viewBox="0 0 24 24">
+        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+      </symbol>
+      <symbol id="icon-windows" viewBox="0 0 24 24">
+        <path d="M3 3h8v8H3zM14 3h7v8h-7zM3 14h8v7H3zM14 14h7v7h-7z" fill="currentColor" stroke="none" />
+      </symbol>
+      <symbol id="icon-play" viewBox="0 0 24 24">
+        <path d="m8 5 12 7-12 7z" fill="currentColor" stroke="none" />
+      </symbol>
+      <symbol id="icon-pause" viewBox="0 0 24 24">
+        <path d="M8 5v14M16 5v14" stroke-width="4" />
+      </symbol>
+      <symbol id="icon-check" viewBox="0 0 24 24">
+        <path d="M20 6L9 17l-5-5" />
+      </symbol>
+      <symbol id="icon-arrow-right" viewBox="0 0 24 24">
+        <path d="M5 12h14m-6-6 6 6-6 6" />
+      </symbol>
+      <symbol id="icon-film" viewBox="0 0 24 24">
+        <rect x="3" y="4" width="18" height="16" rx="2" />
+        <path d="M7 4v16M17 4v16M3 9h4M3 15h4M17 9h4M17 15h4" />
+      </symbol>
+      <symbol id="icon-folder" viewBox="0 0 24 24">
+        <path d="M3 6h7l2 3h9v11H3z" />
+      </symbol>
+      <symbol id="icon-user" viewBox="0 0 24 24">
+        <circle cx="12" cy="8" r="4" />
+        <path d="M4 21v-2a8 8 0 0 1 16 0v2" />
+      </symbol>
+      <symbol id="icon-mic" viewBox="0 0 24 24">
+        <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z" />
+        <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+        <line x1="12" y1="19" x2="12" y2="23" />
+        <line x1="8" y1="23" x2="16" y2="23" />
+      </symbol>
+      <symbol id="icon-cloud" viewBox="0 0 24 24">
+        <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" />
+      </symbol>
+      <symbol id="icon-cpu" viewBox="0 0 24 24">
+        <rect x="6" y="6" width="12" height="12" rx="2" />
+        <rect x="9" y="9" width="6" height="6" />
+        <path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4" />
+      </symbol>
+      <symbol id="icon-github" viewBox="0 0 24 24">
+        <path
+          d="M9 19c-4 1-4-2-6-2m12 5v-4c0-1 .1-2-.5-2.5 3-.3 6-1.5 6-6A5 5 0 0 0 19 6c.1-1 .1-2-1-3-2 0-3 1-4 1a14 14 0 0 0-4 0C9 4 8 3 6 3 5 4 5 5 5.5 6A5 5 0 0 0 4 9.5c0 4.5 3 5.7 6 6-.6.5-1 1.5-1 2.5v4" />
+      </symbol>
+      <symbol id="icon-shield" viewBox="0 0 24 24">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      </symbol>
+      <symbol id="icon-sparkles" viewBox="0 0 24 24">
+        <path
+          d="m12 3 2.5 5 5 2.5-5 2.5-2.5 5-2.5-5-5-2.5 5-2.5zM19 16l1.5 2.5 2.5 1.5-2.5 1.5L19 24l-1.5-2.5-2.5-1.5 2.5-1.5z" />
+      </symbol>
+      <symbol id="icon-tag" viewBox="0 0 24 24">
+        <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
+        <line x1="7" y1="7" x2="7.01" y2="7" />
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- Sticky Navbar -->
+  <header class="site-header" id="site-header">
+    <div class="wrap header-shell">
+      <a class="brand" href="#top" aria-label="ElectroShorts Home">
+        <div class="brand-mark">
+          <img src="images/logo.svg" alt="ElectroShorts logo">
+        </div>
+        ElectroShorts
+      </a>
+
+      <nav class="main-nav" id="main-nav" aria-label="Main Navigation">
+        <a href="#demo">Studio Demo</a>
+        <a href="#workflow">How it Works</a>
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="github-link" data-notice="github" aria-label="View on GitHub">
+          <svg class="icon">
+            <use href="#icon-github" />
+          </svg>
+          <span>GitHub</span>
+        </button>
+        <button class="btn btn-primary btn-sm" data-notice="download">
+          <svg class="icon">
+            <use href="#icon-windows" />
+          </svg>
+          <span>Download for Windows</span>
+        </button>
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle Navigation" aria-expanded="false">
+          <svg class="icon">
+            <path d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Interactive Action Notification Toast -->
+  <div class="notice" id="notice" role="status">
+    <button class="notice-close" id="notice-close" aria-label="Close notification">×</button>
+    <strong id="notice-title">Notice</strong>
+    <span id="notice-copy">Notice content goes here.</span>
+  </div>
+
+  <main id="top">
+    <!-- Hero Section -->
+    <section class="wrap hero">
+      <a class="hero-badge-pill" href="#demo">
+        <span class="badge-dot"></span>
+        <span> ElectroShorts v1.2 Offline Engine Released for Windows x64</span>
+        <svg class="icon" style="width:14px;height:14px;">
+          <use href="#icon-arrow-right" />
+        </svg>
+      </a>
+
+      <h1>
+        Long videos.<br>
+        <span class="gradient-text">Shorts that hit.</span>
+      </h1>
+
+      <p class="hero-lede">
+        ElectroShorts From raw footage to viral 9:16 clips.
+        AI smart face tracking, and kinetic subtitles <b>Rendered directly on your Desktop.</b>
+      </p>
+
+      <div class="hero-actions">
+        <button class="btn btn-primary btn-lg" data-notice="download">
+          <svg class="icon">
+            <use href="#icon-windows" />
+          </svg>
+          <span>Download for Windows (x64)</span>
+        </button>
+        <a class="btn btn-secondary btn-lg" href="#demo">
+          <svg class="icon">
+            <use href="#icon-play" />
+          </svg>
+          <span>See Interactive Demo</span>
+        </a>
+
+      </div>
+      <br>
+
+      <a class="hero-badge-pill" href="#demo">
+        <span class="badge-dot"></span>
+        <span> Make Your Content Hit! with TrandyShorts</span>
+        <svg class="icon" style="width:14px;height:14px;">
+          <use href="#icon-arrow-right" />
+        </svg>
+      </a>
+
+      <div class="hero-proof-bar">
+        <div class="hero-proof-item">
+          <svg class="icon">
+            <use href="#icon-cpu" />
+          </svg>
+          <span>NVIDIA CUDA & Intel QSV Accelerated</span>
+        </div>
+        <div class="hero-proof-item">
+          <svg class="icon">
+            <use href="#icon-shield" />
+          </svg>
+          <span>100% On-Device & Private</span>
+        </div>
+        <div class="hero-proof-item">
+          <svg class="icon">
+            <use href="#icon-tag" />
+          </svg>
+          <span>₹4,900 Lifetime License No Subscriptions</span>
+        </div>
+      </div>
+
+      <!-- Studio Workspace Mockup (Interactive Component) -->
+      <div class="studio-section" id="demo">
+        <div class="studio-kicker">
+          <span class="live-dot-pulse">Interactive Desktop Studio</span>
+          <span>Click tabs & clips below to test live ↘</span>
+        </div>
+
+        <div class="app-frame" data-mode="hooks">
+          <!-- Window Header Bar -->
+          <div class="app-header">
+            <div class="window-controls">
+              <div class="win-dot dot-close"></div>
+              <div class="win-dot dot-min"></div>
+              <div class="win-dot dot-max"></div>
+            </div>
+            <div class="app-title-crumb">
+              <span style="color:var(--brand-indigo)">ϟ</span>
+              <b>ElectroShorts Desktop</b> / creative_process_ep12.mp4
+            </div>
+            <div class="app-meta-badge">
+              <span>RTX 4080 · CUDA ACCEL</span>
+            </div>
+          </div>
+
+          <div class="app-body">
+            <!-- Sidebar -->
+            <aside class="app-sidebar">
+              <div class="sidebar-brand">
+                <span class="sidebar-brand-badge">E</span>
+                <span>My Workspace</span>
+              </div>
+
+              <div class="sidebar-section-title">Timeline</div>
+              <div class="sidebar-item active">
+                <svg class="icon">
+                  <use href="#icon-film" />
+                </svg>
+                <span>Current Project</span>
+              </div>
+              <div class="sidebar-item">
+                <svg class="icon">
+                  <use href="#icon-folder" />
+                </svg>
+                <span>Batch Exports</span>
+              </div>
+
+              <div class="sidebar-section-title">AI Studio Tools</div>
+              <div class="sidebar-item">
+                <svg class="icon">
+                  <use href="#icon-user" />
+                </svg>
+                <span>Speaker Tracking</span>
+              </div>
+              <div class="sidebar-item">
+                <svg class="icon">
+                  <use href="#icon-mic" />
+                </svg>
+                <span>Voice Cleaner</span>
+              </div>
+              <div class="sidebar-item">
+                <svg class="icon">
+                  <use href="#icon-cloud" />
+                </svg>
+                <span>Cloud Gallery</span>
+              </div>
+
+              <div class="sidebar-footer">
+                <b>● LOCAL ENGINE ACTIVE</b>
+                <span>Zero cloud latency</span>
+              </div>
+            </aside>
+
+            <!-- Main Editor Space -->
+            <div class="app-main">
+              <div class="editor-top-bar">
+                <div class="file-details">
+                  <h2>The Creative Process — Episode 12</h2>
+                  <p>1080p 60fps · 42:18 Runtime · 3 Viral Hooks Discovered</p>
+                </div>
+
+                <!-- Workflow Step Tabs -->
+                <div class="workflow-tabs" role="tablist" aria-label="Workflow Tabs">
+                  <button class="workflow-tab-btn active" role="tab" data-mode="hooks" aria-selected="true">
+                    <span class="tab-num">01</span>
+                    <span>Find the Hook</span>
+                  </button>
+                  <button class="workflow-tab-btn" role="tab" data-mode="reframe" aria-selected="false">
+                    <span class="tab-num">02</span>
+                    <span>Smart Reframe</span>
+                  </button>
+                  <button class="workflow-tab-btn" role="tab" data-mode="captions" aria-selected="false">
+                    <span class="tab-num">03</span>
+                    <span>Add Captions</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Dual Viewport Stage -->
+              <div class="dual-viewport">
+                <!-- 16:9 Original Player View -->
+                <div class="viewport-box">
+                  <div class="viewport-header">
+                    <span>SOURCE FOOTAGE (16:9 MASTER)</span>
+                    <span id="source-time">12:34 / 42:18</span>
+                  </div>
+
+                  <div class="video-canvas-169">
+                    <video id="source-video-el" class="media-video-player" src="vid/interview.mp4"
+                      poster="images/podcast_studio.jpg" playsinline muted></video>
+
+                    <div class="video-overlay-badge">
+                      <span class="rec-dot"></span>
+                      <span>1080p60 · FULL 42:18 EPISODE</span>
+                    </div>
+
+                    <!-- 9:16 Reframe Crop Window on 16:9 Master Video -->
+                    <div class="crop-window-overlay" id="crop-window">
+                      <div class="crop-window-header">
+                        <span class="crop-pill-tag">✂ 9:16 REFRAME</span>
+                        <span class="crop-pill-time" id="crop-window-time">12:34 → 13:12</span>
+                      </div>
+                      <div class="crop-target-reticle"></div>
+                      <span class="tracking-coords" id="crop-coords">SPEAKER LOCKED · 98.4%</span>
+                    </div>
+
+                    <div class="video-time-badge" id="source-badge-time">12:34</div>
+                  </div>
+
+                  <!-- Master Episode Timeline (Full Long Video with Extracted Section) -->
+                  <div class="master-timeline-track">
+                    <div class="master-track-header">
+                      <span>LONG VIDEO TIMELINE (42:18 FULL EPISODE)</span>
+                      <b>AI HOOK CUT: <span id="master-clip-tag">CLIP 01 (38s)</span></b>
+                    </div>
+                    <div class="master-scrubber-bar" id="master-scrubber-bar">
+                      <div class="hook-segment-block seg-1 active" data-clip="0" title="Clip 01: 12:34 - 13:12">
+                        <span>#01 38s Short</span>
+                      </div>
+                      <div class="hook-segment-block seg-2" data-clip="1" title="Clip 02: 21:06 - 21:38">
+                        <span>#02 32s Short</span>
+                      </div>
+                      <div class="hook-segment-block seg-3" data-clip="2" title="Clip 03: 28:42 - 29:26">
+                        <span>#03 44s Short</span>
+                      </div>
+                      <div class="master-playhead" id="master-playhead"></div>
+                    </div>
+                    <div class="master-track-footer">
+                      <span>00:00</span>
+                      <span id="long-video-current-time">Time in Long Video: 12:34</span>
+                      <span>42:18</span>
+                    </div>
+                  </div>
+
+                  <!-- Transport Controls -->
+                  <div class="transport-bar" style="margin-top: 10px;">
+                    <button class="play-btn" id="play-toggle" aria-label="Play timeline preview">
+                      <svg class="icon">
+                        <use href="#icon-play" />
+                      </svg>
+                    </button>
+                    <input class="timeline-range" id="timeline" type="range" min="0" max="38" value="0">
+                    <span class="timeline-time" id="time-display">00:00 / 00:38</span>
+                  </div>
+
+                  <!-- Transcript Quote -->
+                  <div class="transcript-box" id="transcript-box">
+                    “You don't need <mark>more ideas.</mark> You need to give the one you believe in a real chance.”
+                  </div>
+                </div>
+
+                <!-- 9:16 Vertical Short Preview -->
+                <div class="viewport-box">
+                  <div class="viewport-header">
+                    <span>VERTICAL SHORT (9:16)</span>
+                    <span class="short-source-ref-badge" id="short-source-ref-badge">AI CUT FROM 12:34</span>
+                  </div>
+
+                  <div class="video-canvas-916">
+                    <video id="short-video-el" class="media-short-player" src="interview.mp4"
+                      poster="images/podcast_vertical.jpg" playsinline muted></video>
+
+                    <div class="short-gradient-overlay"></div>
+
+                    <div class="short-hook-pill" id="short-pill">VIRAL SCORE · 96 🔥</div>
+
+                    <!-- Dynamic Kinetic Subtitle Overlay -->
+                    <div class="short-caption-container">
+                      <div class="short-caption-text" id="short-caption">
+                        YOU DON'T NEED<br>
+                        <span class="active-word">MORE IDEAS.</span>
+                      </div>
+                    </div>
+
+                    <div class="short-watermark">ELECTROSHORTS · 9:16 60FPS</div>
+                  </div>
+
+                  <!-- Caption Highlight Color Palette -->
+                  <div class="caption-color-bar" id="caption-color-bar">
+                    <span>Caption Color:</span>
+                    <div class="color-swatches">
+                      <button class="swatch-btn active" style="background:#10b981;" data-color="lime"
+                        aria-label="Lime green"></button>
+                      <button class="swatch-btn" style="background:#3b82f6;" data-color="blue"
+                        aria-label="Electric blue"></button>
+                      <button class="swatch-btn" style="background:#f59e0b;" data-color="yellow"
+                        aria-label="Sunset yellow"></button>
+                      <button class="swatch-btn" style="background:#ec4899;" data-color="pink"
+                        aria-label="Neon pink"></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Clip Selector Row -->
+              <div class="clip-grid">
+                <div class="clip-card active" data-clip="0">
+                  <div class="clip-top-meta">
+                    <span>CLIP 01 · 12:34</span>
+                    <span class="clip-score-badge">VIRAL SCORE 96 🔥</span>
+                  </div>
+                  <h3>You don't need more ideas</h3>
+                  <span class="clip-duration">Duration: 38s · Full thought completed</span>
+                </div>
+
+                <div class="clip-card" data-clip="1">
+                  <div class="clip-top-meta">
+                    <span>CLIP 02 · 21:06</span>
+                    <span class="clip-score-badge">VIRAL SCORE 92 ⚡</span>
+                  </div>
+                  <h3>Start before you're ready</h3>
+                  <span class="clip-duration">Duration: 32s · High energy punchline</span>
+                </div>
+
+                <div class="clip-card" data-clip="2">
+                  <div class="clip-top-meta">
+                    <span>CLIP 03 · 28:42</span>
+                    <span class="clip-score-badge">VIRAL SCORE 89 ✨</span>
+                  </div>
+                  <h3>Consistency isn't a streak</h3>
+                  <span class="clip-duration">Duration: 44s · Deep storytelling moment</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- App Footer Status -->
+          <div class="app-status-bar">
+            <span id="status-indicator">✦ Hook Intelligence Mode · Click a clip to simulate editing</span>
+            <span>HARDWARE: NVIDIA NVENC ENCODING ENABLED</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="wrap section-py" id="workflow">
+      <div class="section-header">
+        <span class="section-kicker">The Automated Workflow</span>
+        <h2 class="section-title">Less timeline scrubbing.<br>More time creating.</h2>
+        <p class="section-desc">
+          Stop manually chopping 40-minute videos. ElectroShorts handles transcription, speaker centering, and animated
+          captions so you can export in one click.
+        </p>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">01</div>
+          <h3>Drop Your Footage</h3>
+          <p>Drop any local MP4, MOV, or paste a link. ElectroShorts runs local high-speed Whisper models to generate
+            word-accurate timestamps with zero cloud upload delays.</p>
+          <div class="step-mockup-slot">
+            <span>⚡ local_podcast_master.mp4 (4.2 GB)</span>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">02</div>
+          <h3>AI Spots the Hooks</h3>
+          <p>Our intelligent scoring engine finds narrative hooks, punchlines, and emotional peaks, automatically
+            trimming boundaries so the speaker finishes their thought.</p>
+          <div class="step-mockup-slot">
+            <div class="bars-container" id="visual-bars"></div>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">03</div>
+          <h3>Auto-Reframe & Captions</h3>
+          <p>The speaker is tracked smoothly in 9:16 with zero jarring camera cuts. Kinetic word-by-word animated
+            captions are burned in at full 60fps.</p>
+          <div class="step-mockup-slot">
+            <span style="color:var(--brand-indigo);font-weight:600;">9:16 FEED READY · 4K/1080p</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Detailed Bento Feature Showcase -->
+    <section class="features-section section-py" id="features">
+      <div class="wrap">
+        <!-- Feature 1: Speaker Tracking -->
+        <div class="feature-split">
+          <div class="feature-copy">
+            <span class="section-kicker">Intelligent Framing</span>
+            <h3>Your speaker moves.<br>The camera follows smoothly.</h3>
+            <p>
+              Traditional auto-crop tools snap harshly whenever someone shifts in their chair. ElectroShorts uses
+              cinematic easing algorithms to simulate a real human camera operator keeping your subject centered.
+            </p>
+            <ul class="check-list">
+              <li>
+                <svg class="icon">
+                  <use href="#icon-check" />
+                </svg>
+                <span>Smooth ease-in/ease-out camera pans</span>
+              </li>
+              <li>
+                <svg class="icon">
+                  <use href="#icon-check" />
+                </svg>
+                <span>Stacked dual-speaker layout for podcasts & debates</span>
+              </li>
+              <li>
+                <svg class="icon">
+                  <use href="#icon-check" />
+                </svg>
+                <span>Zero cloud costs — runs directly on your GPU</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="feature-card-display">
+            <div class="card-top-bar">
+              <span>AI SPEAKER TRACKING</span>
+              <span class="active-badge">● 60 FPS MOTION LOCK</span>
+            </div>
+            <div class="feature-tracking-viewport">
+              <img src="images/speaker_tracking.jpg" alt="AI Speaker Tracking & Intelligent Framing"
+                class="feature-tracking-img" />
+              <div class="feature-tracking-pulse-pill">
+                <span class="rec-dot"></span> 4K UHD · AUTOFRAMING ENGAGED
+              </div>
+            </div>
+            <div class="feature-tracking-caption-bar">
+              Cinematic smooth re-centering from 16:9 widescreen to 9:16 vertical.
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature 2: Kinetic Subtitles -->
+        <div class="feature-split reverse">
+          <div class="feature-card-display">
+            <div class="card-top-bar">
+              <span>KINETIC SUBTITLE ENGINE</span>
+              <span class="active-badge">WORD-BY-WORD POP</span>
+            </div>
+            <div class="caption-showcase-box">
+              <div class="showcase-big-caption">
+                MAKE THEM STOP.<br>
+                MAKE THEM <span class="pop-word">STAY.</span>
+              </div>
+              <div class="word-timeline-bar">
+                <span class="word-chip">Make</span>
+                <span class="word-chip">Them</span>
+                <span class="word-chip">Stop.</span>
+                <span class="word-chip">Make</span>
+                <span class="word-chip">Them</span>
+                <span class="word-chip highlight">Stay.</span>
+              </div>
+            </div>
+            <div
+              style="padding: 12px 18px; font-size: 11px; font-family: var(--font-mono); color: var(--text-muted); background: #ffffff; border-top: 1px solid var(--border-subtle);">
+              Exact millisecond audio-to-word synchronization. Never miss a beat.
+            </div>
+          </div>
+
+          <div class="feature-copy">
+            <span class="section-kicker">Engagement Engine</span>
+            <h3>Sound off.<br>Story still captivating.</h3>
+            <p>
+              Over 80% of mobile short-form viewers scroll with sound muted. ElectroShorts burns in punchy, animated
+              subtitles that highlight each word precisely as it's uttered.
+            </p>
+            <ul class="check-list">
+              <li>
+                <svg class="icon">
+                  <use href="#icon-check" />
+                </svg>
+                <span>CapCut & Opus-style active word animations</span>
+              </li>
+              <li>
+                <svg class="icon">
+                  <use href="#icon-check" />
+                </svg>
+                <span>Custom font families, stroke colors, and glow effects</span>
+              </li>
+              <li>
+                <svg class="icon">
+                  <use href="#icon-check" />
+                </svg>
+                <span>Multi-language auto-transcription with 99% accuracy</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Feature 3: Hardware Acceleration Banner -->
+        <div class="desktop-engine-banner">
+          <div>
+            <span class="section-kicker">Desktop Power</span>
+            <h3
+              style="font-family:var(--font-display);font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--text-primary);margin-top:8px;">
+              Your hardware.<br>Zero cloud queue.
+            </h3>
+            <p style="font-size:15px;color:var(--text-secondary);line-height:1.7;margin-top:14px;">
+              Cloud video editors make you upload giant 10GB files, wait in line behind other users, and charge you
+              recurring monthly subscription fees. ElectroShorts harnesses your PC's dedicated GPU for blazing-fast
+              local exports.
+            </p>
+          </div>
+
+          <div class="engine-metrics-grid">
+            <div class="metric-card">
+              <span class="metric-label">GPU ENCODE</span>
+              <h4>12x Faster</h4>
+              <p>NVIDIA NVENC & Intel QuickSync acceleration</p>
+            </div>
+            <div class="metric-card">
+              <span class="metric-label">CLOUD BILL</span>
+              <h4>₹0 / month</h4>
+              <p>Zero monthly credit limits or token caps</p>
+            </div>
+            <div class="metric-card">
+              <span class="metric-label">PRIVACY</span>
+              <h4>100% Local</h4>
+              <p>Unpublished raw footage never leaves your drive</p>
+            </div>
+            <div class="metric-card">
+              <span class="metric-label">RESOLUTION</span>
+              <h4>Up to 4K60</h4>
+              <p>Crisp bitrate without cloud compression artifacts</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="wrap section-py pricing-section" id="pricing">
+      <div class="section-header" style="margin-bottom:24px;">
+        <span class="section-kicker">Transparent Ownership</span>
+        <h2 class="section-title">Buy once.<br>Keep creating forever.</h2>
+        <p class="section-desc">
+          No monthly drain on your credit card. A single lifetime license for your PC.
+        </p>
+      </div>
+
+      <div class="price-card-hero">
+        <span class="pricing-badge-popular">ONE-TIME LICENSE</span>
+
+        <div class="price-headline-row">
+          <div class="price-amount"><small>₹</small>4,900</div>
+          <div class="price-type">INR · Lifetime Validity</div>
+        </div>
+        <p class="price-subtitle">Single purchase. Full desktop engine. Basic recurring subscriptions.</p>
+
+        <ul class="plan-features-list">
+          <li>
+            <div class="check-icon-circle"><svg class="icon">
+                <use href="#icon-check" />
+              </svg></div>
+            <span><strong>Windows x64 Standalone App</strong> — Clean installer, no terminal setup</span>
+          </li>
+          <li>
+            <div class="check-icon-circle"><svg class="icon">
+                <use href="#icon-check" />
+              </svg></div>
+            <span><strong>Activate on up to 2 PCs</strong> — Desktop + Editing laptop</span>
+          </li>
+          <li>
+            <div class="check-icon-circle"><svg class="icon">
+                <use href="#icon-check" />
+              </svg></div>
+            <span><strong>Unlimited Local Exports & Voice Transcriptions</strong></span>
+          </li>
+          <li>
+            <div class="check-icon-circle"><svg class="icon">
+                <use href="#icon-check" />
+              </svg></div>
+            <span><strong>NVIDIA CUDA, NVENC & Intel QSV Hardware Encoding</strong></span>
+          </li>
+          <li>
+            <div class="check-icon-circle"><svg class="icon">
+                <use href="#icon-check" />
+              </svg></div>
+            <span><strong>1 Full Year of Engine & AI Model Updates Included</strong></span>
+          </li>
+          <li>
+            <div class="check-icon-circle"><svg class="icon">
+                <use href="#icon-check" />
+              </svg></div>
+            <span><strong> From Next Year, Basic Service Charge of ₹999/year will Apply.</strong></span>
+          </li>
+        </ul>
+
+        <button class="btn btn-primary btn-lg" style="width:100%;" data-notice="download">
+          <svg class="icon">
+            <use href="#icon-windows" />
+          </svg>
+          <span>GET LICENSE </span>
+        </button>
+        <p class="price-note">CHECKOUT PREVIEW · DROP YOUR MAIL</p>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="wrap faq-layout" id="faq">
+      <div>
+        <span class="section-kicker">Frequently Asked</span>
+        <h2 class="section-title" style="font-size:36px;">Frequently answered questions.</h2>
+        <p class="section-desc" style="font-size:15px;">
+          Everything you need to know about ElectroShorts, system requirements, and our lifetime license model.
+        </p>
+      </div>
+
+      <div class="faq-accordion">
+        <details open>
+          <summary>Is ₹4,900 really a one-time payment with no subscription?</summary>
+          <p>Yes. You pay ₹4,900 INR once and receive a lifetime license key for the desktop app. There are no
+            monthly fees, no hidden export credits, for the full year. only basic charges will apply from next year.
+          </p>
+        </details>
+        <details>
+          <summary>What are the recommended Windows system requirements?</summary>
+          <p>ElectroShorts runs on Windows 10/11 (64-bit). For the fastest transcription and 60fps rendering, we
+            recommend an NVIDIA GeForce RTX 1050ti or newer (or Intel 11th Gen+ CPU with QuickSync) and 8GB of RAM.</p>
+        </details>
+        <details>
+          <summary>Do my videos ever get uploaded to an external server?</summary>
+          <p>No. The core transcription engine and the speaker tracking computer vision models run 100%
+            locally on your machine. Your raw video footage never leaves your hard drive.</p>
+        </details>
+        <details>
+          <summary>Can I install it on more than one computer?</summary>
+          <p>Yes! Every license allows activation on up to 2 personal Windows PCs simultaneously (e.g. your main editing
+            desktop and your travel laptop).</p>
+        </details>
+        <details>
+          <summary>What video formats and aspect ratios are supported?</summary>
+          <p>Input: MP4, MOV, MKV, WebM, and ProRes up to 4K 60fps. Output: High-bitrate 9:16 vertical, 1:1 Feed Post
+            ,16:9 Post MP4s optimized
+            for YouTube Shorts, Instagram Reels, and TikTok.</p>
+        </details>
+        <details>
+          <summary>Is there a trial available for new users?</summary>
+          <p>Yes, we offer trials for new creators and studios. Please contact our support team via email with your
+            studio credentials and production details to receive evaluation access.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- Final Call to Action -->
+    <section class="wrap">
+      <div class="final-cta-card">
+        <h2>Turn your long videos into viral shorts today.</h2>
+        <p>Join over 1,400 content creators, podcasters, and editors saving 15+ hours every week.</p>
+        <div class="final-cta-actions">
+          <button class="btn btn-light btn-lg" data-notice="download">
+            <svg class="icon">
+              <use href="#icon-windows" />
+            </svg>
+            <span>Download for Windows (x64)</span>
+          </button>
+          <a class="btn btn-ghost-light btn-lg" href="#demo">
+            <svg class="icon">
+              <use href="#icon-play" />
+            </svg>
+            <span>Try Interactive Demo</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-top-row">
+        <a class="brand" href="#top">
+          <div class="brand-mark">
+            <img src="images/logo.svg" alt="ElectroShorts logo">
+          </div>
+          ElectroShorts
+        </a>
+
+        <div class="footer-nav">
+          <a href="#demo">Studio Demo</a>
+          <a href="#workflow">Workflow</a>
+          <a href="#features">Features</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#faq">FAQ</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom-row">
+        <span>© <span id="current-year">2026</span> ElectroShorts. Designed for Windows creators worldwide.</span>
+        <span>Windows x64 Native · 100% On-Device AI</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactive JavaScript Logic -->
+  <script src="script.js" defer></script>
+
+</body>
+
+</html>
