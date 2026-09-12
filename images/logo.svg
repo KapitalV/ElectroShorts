@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <!-- Matte Dark Slate Canvas -->
+  <rect width="512" height="512" rx="96" fill="#0B0E14" />
+
+  <!-- Frame 1: Left Vertical Anchor Bar -->
+  <rect x="124" y="116" width="48" height="280" rx="8" fill="#F8FAFC" />
+
+  <!-- Dynamic Slices: 9:16 Mechanical Cut Tiers -->
+  <!-- Top Tier (Wide Hook) -->
+  <rect x="196" y="116" width="192" height="48" rx="8" fill="#F8FAFC" />
+  
+  <!-- Middle Tier (Offset Core - Accent Cobalt) -->
+  <rect x="196" y="232" width="136" height="48" rx="8" fill="#2563EB" />
+  
+  <!-- Bottom Tier (Base Frame) -->
+  <rect x="196" y="348" width="192" height="48" rx="8" fill="#F8FAFC" />
+
+  <!-- High-Precision Vertical Alignment Guides (Technical Reticle) -->
+  <circle cx="364" cy="256" r="10" fill="#2563EB" />
+</svg>
