@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Payment Confirmed · ElectroShorts</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body { min-height: 100vh; display: grid; place-items: center; padding: 24px; }
+    .payment-status-card { width: min(100%, 600px); padding: clamp(32px, 7vw, 56px); text-align: center; background: #fff; border: 1px solid var(--border-card); border-radius: var(--radius-xl); box-shadow: var(--shadow-xl); }
+    .payment-status-mark { width: 64px; height: 64px; display: grid; place-items: center; margin: 0 auto 22px; border-radius: 50%; background: rgba(16, 185, 129, .12); color: #059669; font-size: 32px; font-weight: 800; }
+    .payment-status-card h1 { margin: 8px 0 12px; font-family: var(--font-display); font-size: clamp(30px, 5vw, 42px); line-height: 1.15; }
+    .payment-status-card p { color: var(--text-secondary); }
+    .payment-status-note { margin: 12px 0 28px; }
+  </style>
+</head>
+<body>
+  <main class="payment-status-card">
+    <div class="payment-status-mark" aria-hidden="true">✓</div>
+    <span class="section-kicker">Payment verified</span>
+    <h1>Thank you for choosing ElectroShorts.</h1>
+    <p class="payment-status-note">Your key is on the way to your registered email.</p>
+    <a class="btn btn-primary btn-lg" href="/">Back to ElectroShorts</a>
+  </main>
+</body>
+</html>
